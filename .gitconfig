@@ -1,0 +1,24 @@
+[user]
+       name = RVIRUS0817
+       email = xxxx
+
+[color]
+       ui = auto
+
+[alias]
+    g  = git
+    st = status
+    ss = status -s
+    sh = show
+    ch = checkout
+    br = branch
+    co = commit
+    pu = push
+
+[ghq]
+  root = ~/git
+  root = ~/www
+
+[commit]
+  template = ~/.commit_template
+
