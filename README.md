@@ -15,9 +15,14 @@ The following files will be symlinked to your home directory:
 - `.tmux.conf` - tmux configuration
 - `.vimrc` - Vim configuration
 - `.zshrc` - Zsh configuration
+- `.config/nvim` - Neovim (LazyVim) configuration
 
 #### copy file
-- `.config/` - Various application configuration directory
+
+The following directories will be copied to `~/.config/`:
+
+- `.config/ghostty` - Ghostty terminal configuration
+- `.config/powerline` - Powerline configuration
 
 ### 2. Install Homebrew Packages
 
@@ -35,6 +40,12 @@ To add or remove packages, edit the `Brewfile`.
 brew bundle --file=Brewfile
 ```
 
+## About Neovim (LazyVim)
+
+Neovim configuration is managed in `.config/nvim/` and uses [LazyVim](https://www.lazyvim.org/) as the base distribution.
+
+`~/.config/nvim` will be symlinked to the `dotfiles/.config/nvim` directory.
+
 ## About Existing Files
 
 If configuration files already exist, they will be automatically backed up with a `.backup` extension.
@@ -45,3 +56,4 @@ If configuration files already exist, they will be automatically backed up with 
 - .ssh
 - .terraformrc
 - Raycast
+
