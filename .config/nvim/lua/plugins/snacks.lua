@@ -1,10 +1,10 @@
 return {
-	"folke/snacks.nvim",
-	opts = {
-		explorer = {
-			filters = {
-				dotfiles = false,
-			},
-		},
-	},
+  "folke/snacks.nvim",
+  opts = {
+    explorer = {
+      filters = {
+        dotfiles = false,
+      },
+    },
+  },
 }
