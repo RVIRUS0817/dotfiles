@@ -1,11 +1,12 @@
+theme = Dracula
+font-family = Osaka
+font-thicken
 font-size = 16
 
 # リガチャを無効化
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
-
-theme = Ayu Mirage
 
 # カーソルの見た目
 cursor-style = block

@@ -2,9 +2,7 @@ return {
   "folke/snacks.nvim",
   opts = {
     explorer = {
-      filters = {
-        dotfiles = false,
-      },
+      hidden = true,
     },
   },
 }
