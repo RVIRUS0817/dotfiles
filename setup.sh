@@ -87,3 +87,25 @@ fi
 echo "Creating symlink: $nvim_dest -> $nvim_src"
 ln -s "$nvim_src" "$nvim_dest"
 echo "Neovim config setup complete!"
+
+# Setup Python environment with pyenv
+echo ""
+echo "Setting up Python environment..."
+if command -v pyenv &>/dev/null; then
+  pyenv install 3.12.0
+  pyenv global 3.12.0
+  pip install --upgrade pip
+  pip install powerline-status
+  echo "Python environment setup complete!"
+else
+  echo "Warning: pyenv is not installed. Please install pyenv first."
+fi
+
+# Setup git completion/prompt scripts
+echo ""
+echo "Setting up git completion scripts..."
+mkdir -p ~/.zsh
+curl -o ~/.zsh/git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+curl -o ~/.zsh/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+curl -o ~/.zsh/_git https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
+echo "Git completion scripts setup complete!"
