@@ -13,6 +13,8 @@ dotfiles=(
   ".zshrc"
 )
 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # Create symlinks
 for file in "${dotfiles[@]}"; do
   src="$DOTFILES_DIR/$file"
