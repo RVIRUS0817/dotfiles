@@ -25,21 +25,29 @@ for file in "${dotfiles[@]}"; do
   src="$DOTFILES_DIR/$file"
   dest="$HOME/$file"
 
-  if [ -e "$dest" ] || [ -L "$dest" ]; then
-    echo "Backing up existing $file to ${file}.backup"
-    mv "$dest" "${dest}.backup"
+  if [ ! -e "$src" ]; then
+    echo "Warning: $src does not exist, skipping..."
+    continue
   fi
 
-  if [ -e "$src" ]; then
-    echo "Creating symlink: $dest -> $src"
-    ln -s "$src" "$dest"
-  else
-    echo "Warning: $src does not exist, skipping..."
+  if [ "$(readlink "$dest")" = "$src" ]; then
+    echo "$file already symlinked, skipping..."
+    continue
   fi
+
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    backup="${dest}.backup.$(date +%Y%m%d%H%M%S)"
+    echo "Backing up existing $file to $backup"
+    mv "$dest" "$backup"
+  fi
+
+  echo "Creating symlink: $dest -> $src"
+  ln -s "$src" "$dest"
 done
 
 # Copy specific .config items
 config_items=(
+  "bflatapp-ssm"
   "ghostty"
   "powerline"
 )
@@ -99,14 +107,18 @@ echo "Setting up Neovim config..."
 nvim_src="$DOTFILES_DIR/.config/nvim"
 nvim_dest="$HOME/.config/nvim"
 
-if [ -e "$nvim_dest" ] || [ -L "$nvim_dest" ]; then
-  echo "Backing up existing nvim config to nvim.backup"
-  mv "$nvim_dest" "${nvim_dest}.backup"
+if [ "$(readlink "$nvim_dest")" = "$nvim_src" ]; then
+  echo "Neovim config already symlinked, skipping..."
+else
+  if [ -e "$nvim_dest" ] || [ -L "$nvim_dest" ]; then
+    backup="${nvim_dest}.backup.$(date +%Y%m%d%H%M%S)"
+    echo "Backing up existing nvim config to $backup"
+    mv "$nvim_dest" "$backup"
+  fi
+  echo "Creating symlink: $nvim_dest -> $nvim_src"
+  ln -s "$nvim_src" "$nvim_dest"
+  echo "Neovim config setup complete!"
 fi
-
-echo "Creating symlink: $nvim_dest -> $nvim_src"
-ln -s "$nvim_src" "$nvim_dest"
-echo "Neovim config setup complete!"
 
 # Setup Python environment with pyenv
 echo ""
