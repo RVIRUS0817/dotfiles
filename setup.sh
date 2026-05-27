@@ -11,10 +11,14 @@ dotfiles=(
   ".tmux.conf"
   ".vimrc"
   ".zshrc"
-  "p10k.zsh"
+  ".p10k.zsh"
 )
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [ -d ~/.tmux/plugins/tpm ]; then
+  echo "TPM already installed, skipping..."
+else
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 # Create symlinks
 for file in "${dotfiles[@]}"; do
@@ -49,13 +53,23 @@ for item in "${config_items[@]}"; do
 
   if [ -e "$src" ]; then
     echo "Copying .config/$item to $dest"
-    cp -r "$src" "$dest"
+    sudo cp -r "$src" "$dest"
   else
     echo "Warning: $src does not exist, skipping..."
   fi
 done
 
 echo "Dotfiles setup complete!"
+
+# Install tmux plugins via TPM
+echo ""
+echo "Installing tmux plugins..."
+if [ -f ~/.tmux/plugins/tpm/bin/install_plugins ]; then
+  ~/.tmux/plugins/tpm/bin/install_plugins
+  echo "Tmux plugins installation complete!"
+else
+  echo "Warning: TPM not found, skipping tmux plugin installation"
+fi
 
 # Install Homebrew packages from Brewfile
 if [ -f "$DOTFILES_DIR/Brewfile" ]; then
@@ -64,9 +78,12 @@ if [ -f "$DOTFILES_DIR/Brewfile" ]; then
 
   # Check if Homebrew is installed
   if ! command -v brew &>/dev/null; then
-    echo "Homebrew is not installed. Please install Homebrew first:"
-    echo '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-    exit 1
+    echo "Homebrew is not installed. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Add Homebrew to PATH for Apple Silicon
+    if [ -f /opt/homebrew/bin/brew ]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
   fi
 
   # Run brew bundle
@@ -104,7 +121,7 @@ else
   echo "Warning: pyenv is not installed. Please install pyenv first."
 fi
 
-# Setup git completion/prompt scripts
+# Setup git completion scripts
 echo ""
 echo "Setting up git completion scripts..."
 mkdir -p ~/.zsh
