@@ -36,9 +36,8 @@ for file in "${dotfiles[@]}"; do
   fi
 
   if [ -e "$dest" ] || [ -L "$dest" ]; then
-    backup="${dest}.backup.$(date +%Y%m%d%H%M%S)"
-    echo "Backing up existing $file to $backup"
-    mv "$dest" "$backup"
+    echo "Removing existing $file"
+    rm -rf "$dest"
   fi
 
   echo "Creating symlink: $dest -> $src"
@@ -47,7 +46,6 @@ done
 
 # Copy specific .config items
 config_items=(
-  "bflatapp-ssm"
   "ghostty"
   "powerline"
 )
@@ -111,13 +109,32 @@ if [ "$(readlink "$nvim_dest")" = "$nvim_src" ]; then
   echo "Neovim config already symlinked, skipping..."
 else
   if [ -e "$nvim_dest" ] || [ -L "$nvim_dest" ]; then
-    backup="${nvim_dest}.backup.$(date +%Y%m%d%H%M%S)"
-    echo "Backing up existing nvim config to $backup"
-    mv "$nvim_dest" "$backup"
+    echo "Removing existing nvim config"
+    rm -rf "$nvim_dest"
   fi
   echo "Creating symlink: $nvim_dest -> $nvim_src"
   ln -s "$nvim_src" "$nvim_dest"
   echo "Neovim config setup complete!"
+fi
+
+# Setup herdr config
+echo ""
+echo "Setting up herdr config..."
+herdr_src="$DOTFILES_DIR/.config/herdr/config.toml"
+herdr_dest="$HOME/.config/herdr/config.toml"
+
+mkdir -p "$HOME/.config/herdr"
+
+if [ "$(readlink "$herdr_dest")" = "$herdr_src" ]; then
+  echo "herdr config already symlinked, skipping..."
+else
+  if [ -e "$herdr_dest" ] || [ -L "$herdr_dest" ]; then
+    echo "Removing existing herdr config"
+    rm -f "$herdr_dest"
+  fi
+  echo "Creating symlink: $herdr_dest -> $herdr_src"
+  ln -s "$herdr_src" "$herdr_dest"
+  echo "herdr config setup complete!"
 fi
 
 # Setup Python environment with pyenv

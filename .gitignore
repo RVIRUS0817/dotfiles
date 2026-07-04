@@ -1,1 +1,5 @@
 .config/nvim/lazy-lock.json
+
+# herdr runtime files (only config.toml is tracked)
+.config/herdr/*
+!.config/herdr/config.toml

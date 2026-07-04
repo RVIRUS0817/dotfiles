@@ -1,0 +1,36 @@
+onboarding = false
+
+[keys]
+prefix = "ctrl+t"
+
+detach = "prefix+d"
+new_tab = "prefix+c"
+close_tab = "prefix+&"
+rename_tab = "prefix+,"
+previous_tab = "prefix+p"
+switch_tab = "prefix+1..9"
+split_vertical = "prefix+%"
+split_horizontal = "prefix+\""
+last_pane = "prefix+;"
+close_pane = "prefix+x"
+copy_mode = "prefix+["
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+
+[theme]
+name = "terminal"
+auto_switch = true
+dark_name = "dracula"
+light_name = "catppuccin-latte"
+
+[session]
+resume_agents_on_restore = true
+
+[ui]
+show_agent_labels_on_pane_borders = true
+
+[ui.toast]
+delivery = "system"
+
+[ui.sound]
+enabled = false

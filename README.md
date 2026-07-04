@@ -16,6 +16,7 @@ The following files will be symlinked to your home directory:
 - `.vimrc` - Vim configuration
 - `.zshrc` - Zsh configuration
 - `.config/nvim` - Neovim (LazyVim) configuration
+- `.config/herdr/config.toml` - herdr configuration
 
 #### copy file
 
@@ -48,7 +49,7 @@ Neovim configuration is managed in `.config/nvim/` and uses [LazyVim](https://ww
 
 ## About Existing Files
 
-If configuration files already exist, they will be automatically backed up with a `.backup` extension.
+If configuration files already exist, they will be removed and replaced with symlinks to this repository.
 
 ## Other Manual
 
