@@ -3,3 +3,7 @@
 # herdr runtime files (only config.toml is tracked)
 .config/herdr/*
 !.config/herdr/config.toml
+
+# Claude Code runtime files (only settings.json is tracked)
+.claude/*
+!.claude/settings.json

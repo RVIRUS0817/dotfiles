@@ -17,6 +17,7 @@ The following files will be symlinked to your home directory:
 - `.zshrc` - Zsh configuration
 - `.config/nvim` - Neovim (LazyVim) configuration
 - `.config/herdr/config.toml` - herdr configuration
+- `.claude/settings.json` - Claude Code configuration
 
 #### copy file
 
@@ -28,6 +29,7 @@ The following directories will be copied to `~/.config/`:
 ### 2. Install Homebrew Packages
 
 Automatically installs packages listed in `Brewfile`:
+
 - Homebrew formulae (CLI tools)
 - Homebrew casks (GUI applications)
 
@@ -43,13 +45,13 @@ brew bundle --file=Brewfile
 
 ## About Neovim (LazyVim)
 
-Neovim configuration is managed in `.config/nvim/` and uses [LazyVim](https://www.lazyvim.org/) as the base distribution.
-
-`~/.config/nvim` will be symlinked to the `dotfiles/.config/nvim` directory.
+Neovim configuration is managed in `.config/nvim/` and uses
+[LazyVim](https://www.lazyvim.org/) as the base distribution.
 
 ## About Existing Files
 
-If configuration files already exist, they will be removed and replaced with symlinks to this repository.
+If configuration files already exist, they will be removed and replaced with
+symlinks to this repository.
 
 ## Other Manual
 
@@ -57,4 +59,3 @@ If configuration files already exist, they will be removed and replaced with sym
 - .ssh
 - .terraformrc
 - Raycast
-

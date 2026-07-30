@@ -137,6 +137,26 @@ else
   echo "herdr config setup complete!"
 fi
 
+# Setup Claude Code config
+echo ""
+echo "Setting up Claude Code config..."
+claude_src="$DOTFILES_DIR/.claude/settings.json"
+claude_dest="$HOME/.claude/settings.json"
+
+mkdir -p "$HOME/.claude"
+
+if [ "$(readlink "$claude_dest")" = "$claude_src" ]; then
+  echo "Claude Code config already symlinked, skipping..."
+else
+  if [ -e "$claude_dest" ] || [ -L "$claude_dest" ]; then
+    echo "Removing existing Claude Code config"
+    rm -f "$claude_dest"
+  fi
+  echo "Creating symlink: $claude_dest -> $claude_src"
+  ln -s "$claude_src" "$claude_dest"
+  echo "Claude Code config setup complete!"
+fi
+
 # Setup Python environment with pyenv
 echo ""
 echo "Setting up Python environment..."
