@@ -4,6 +4,9 @@
 .config/herdr/*
 !.config/herdr/config.toml
 
-# Claude Code runtime files (only settings.json is tracked)
+# Claude Code runtime files (only settings.json and skills/yomiyasu are tracked)
 .claude/*
 !.claude/settings.json
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/yomiyasu/
