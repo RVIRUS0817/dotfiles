@@ -157,6 +157,26 @@ else
   echo "Claude Code config setup complete!"
 fi
 
+# Setup Claude Code skills
+echo ""
+echo "Setting up Claude Code skills..."
+yomiyasu_src="$DOTFILES_DIR/.claude/skills/yomiyasu"
+yomiyasu_dest="$HOME/.claude/skills/yomiyasu"
+
+mkdir -p "$HOME/.claude/skills"
+
+if [ "$(readlink "$yomiyasu_dest")" = "$yomiyasu_src" ]; then
+  echo "yomiyasu skill already symlinked, skipping..."
+else
+  if [ -e "$yomiyasu_dest" ] || [ -L "$yomiyasu_dest" ]; then
+    echo "Removing existing yomiyasu skill"
+    rm -rf "$yomiyasu_dest"
+  fi
+  echo "Creating symlink: $yomiyasu_dest -> $yomiyasu_src"
+  ln -s "$yomiyasu_src" "$yomiyasu_dest"
+  echo "yomiyasu skill setup complete!"
+fi
+
 # Setup Python environment with pyenv
 echo ""
 echo "Setting up Python environment..."

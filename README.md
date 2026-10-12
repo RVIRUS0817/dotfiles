@@ -18,6 +18,7 @@ The following files will be symlinked to your home directory:
 - `.config/nvim` - Neovim (LazyVim) configuration
 - `.config/herdr/config.toml` - herdr configuration
 - `.claude/settings.json` - Claude Code configuration
+- `.claude/skills/yomiyasu` - Claude Code skill ([yomiyasu](https://github.com/nanaism/yomiyasu))
 
 #### copy file
 
