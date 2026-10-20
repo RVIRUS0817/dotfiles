@@ -157,6 +157,16 @@ else
   echo "Claude Code config setup complete!"
 fi
 
+# Install herdr integration for Claude Code (lets herdr resume claude sessions after restart)
+echo ""
+echo "Installing herdr integration for Claude Code..."
+if command -v herdr &>/dev/null; then
+  herdr integration install claude
+  echo "herdr integration for Claude Code installed!"
+else
+  echo "Warning: herdr is not installed, skipping herdr integration"
+fi
+
 # Setup Claude Code skills
 echo ""
 echo "Setting up Claude Code skills..."
