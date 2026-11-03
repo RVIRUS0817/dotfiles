@@ -1,8 +1,9 @@
 .config/nvim/lazy-lock.json
 
-# herdr runtime files (only config.toml is tracked)
+# herdr runtime files (only config.toml and the Herdr UI overrides are tracked)
 .config/herdr/*
 !.config/herdr/config.toml
+!.config/herdr/config-gpui.local.toml
 
 # Claude Code runtime files (only settings.json and skills/yomiyasu are tracked)
 .claude/*
