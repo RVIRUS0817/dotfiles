@@ -1,5 +1,6 @@
 # Taps
 tap "mackerelio/mackerel-agent"
+tap "penso/tap"
 tap "ynqa/tap"
 
 # Homebrew packages
@@ -59,6 +60,7 @@ cast "claude-code"
 cask "ghostty"
 cask "google-japanese-ime"
 cask "google-gemini"
+cask "herdr-gpui"
 cask "kiro-cli"
 cask "notion"
 cask "macdown"

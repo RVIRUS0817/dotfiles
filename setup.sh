@@ -117,25 +117,27 @@ else
   echo "Neovim config setup complete!"
 fi
 
-# Setup herdr config
+# Setup herdr config (daemon + Herdr UI)
 echo ""
 echo "Setting up herdr config..."
-herdr_src="$DOTFILES_DIR/.config/herdr/config.toml"
-herdr_dest="$HOME/.config/herdr/config.toml"
-
 mkdir -p "$HOME/.config/herdr"
 
-if [ "$(readlink "$herdr_dest")" = "$herdr_src" ]; then
-  echo "herdr config already symlinked, skipping..."
-else
-  if [ -e "$herdr_dest" ] || [ -L "$herdr_dest" ]; then
-    echo "Removing existing herdr config"
-    rm -f "$herdr_dest"
+for herdr_file in config.toml config-gpui.local.toml; do
+  herdr_src="$DOTFILES_DIR/.config/herdr/$herdr_file"
+  herdr_dest="$HOME/.config/herdr/$herdr_file"
+
+  if [ "$(readlink "$herdr_dest")" = "$herdr_src" ]; then
+    echo "herdr $herdr_file already symlinked, skipping..."
+  else
+    if [ -e "$herdr_dest" ] || [ -L "$herdr_dest" ]; then
+      echo "Removing existing herdr $herdr_file"
+      rm -f "$herdr_dest"
+    fi
+    echo "Creating symlink: $herdr_dest -> $herdr_src"
+    ln -s "$herdr_src" "$herdr_dest"
   fi
-  echo "Creating symlink: $herdr_dest -> $herdr_src"
-  ln -s "$herdr_src" "$herdr_dest"
-  echo "herdr config setup complete!"
-fi
+done
+echo "herdr config setup complete!"
 
 # Setup Claude Code config
 echo ""

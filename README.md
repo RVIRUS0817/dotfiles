@@ -17,6 +17,7 @@ The following files will be symlinked to your home directory:
 - `.zshrc` - Zsh configuration
 - `.config/nvim` - Neovim (LazyVim) configuration
 - `.config/herdr/config.toml` - herdr configuration
+- `.config/herdr/config-gpui.local.toml` - Herdr UI configuration
 - `.claude/settings.json` - Claude Code configuration
 - `.claude/skills/yomiyasu` - Claude Code skill ([yomiyasu](https://github.com/nanaism/yomiyasu))
 
